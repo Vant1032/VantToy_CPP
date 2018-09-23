@@ -7,25 +7,46 @@
 
 #include <string>
 #include <sys/stat.h>
+#include <vector>
 
 class File {
 public:
-    File(char *path);
-    File(std::string& path);
+    explicit File(char *path);
 
-    bool exist();
-    bool canWrite();
-    bool canRead();
-    bool canExecute();
-    bool isFile();
-    bool isDirectory();
-    bool deleteFile();
-    std::string toString();
-    bool getStat(struct stat stat1);
+    explicit File(std::string &path);
+
+    File(const File &file);
+
+    File(File &&file) noexcept;
+
+    File &operator=(const File &file);
+
+    File &operator=(File &&file) noexcept;
+
+
+    virtual ~File();
+
+    bool exist() const;
+
+    bool canWrite() const;
+
+    bool canRead() const;
+
+    bool canExecute() const;
+
+    bool isFile() const;
+
+    bool isDirectory() const;
+
+    bool deleteFile() const;
+
+    std::string toString() const;
+
+    std::vector<File> listFiles() const;
+
 
 private:
-    char * path;
-
+    char *path;
 };
 
 
