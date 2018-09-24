@@ -8,10 +8,13 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <cstring>
+#include <memory>
 #include <stdio.h>
 
 void PrintDirTest::test() {
-    printDir(get_current_dir_name(), 0);
+    char *p = get_current_dir_name();
+    printDir(p, 0);
+    free(p); //要对应,不是用delete,而是用free
 }
 
 void PrintDirTest::printDir(char *dir, int depth) {

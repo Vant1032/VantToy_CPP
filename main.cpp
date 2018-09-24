@@ -59,10 +59,10 @@ void run() {
  * 将要测试的类放入此处
  */
 void addTestable() {
-//    v.push_back(make_shared<SystemTest>());
-//    v.push_back(make_shared<ForkTest>());
-//    v.push_back(make_shared<LambdaTest>());
-//    v.push_back(make_shared<PrintDirTest>());
+    v.push_back(make_shared<SystemTest>());
+    v.push_back(make_shared<ForkTest>());
+    v.push_back(make_shared<LambdaTest>());
+    v.push_back(make_shared<PrintDirTest>());
 
     v.push_back(std::make_shared<FileTest>());
 }

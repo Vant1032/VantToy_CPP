@@ -80,11 +80,12 @@ std::vector<File> File::listFiles() const {
     while ((dir = readdir(dp)) != nullptr) {
         v.emplace_back(dir->d_name);
     }
+    closedir(dp);
     return v;
 }
 
 File::~File() {
-    delete path;
+    delete [] path;
 }
 
 File::File(const File &file) {
@@ -113,5 +114,4 @@ File &File::operator=(File &&file) noexcept {
     this->path = file.path;
     file.path = nullptr;
     return *this;
-
 }
