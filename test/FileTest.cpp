@@ -14,4 +14,5 @@ void FileTest::test() {
     for (const auto &item : v) {
         cout << item.toString() << endl;
     }
+//    cout << file.canRead() << endl;
 }

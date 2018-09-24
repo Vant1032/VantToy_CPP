@@ -1,3 +1,5 @@
+#include <memory>
+
 /**
  * 此程序使用的是C++17标准
  */
@@ -15,6 +17,7 @@
 #include <cstring>
 #include <cmath>
 #include <boost/lexical_cast.hpp>
+#include <array>
 
 #include "test/Testable.h"
 #include "test/ForkTest.h"
@@ -35,6 +38,8 @@ void run();
 void testEvent();
 
 int main() {
+    using namespace std;
+
     testEvent();
 }
 
@@ -54,10 +59,10 @@ void run() {
  * 将要测试的类放入此处
  */
 void addTestable() {
-//    v.push_back(shared_ptr<Testable>(new SystemTest()));
-//    v.push_back(shared_ptr<Testable>(new ForkTest()));
-//    v.push_back(shared_ptr<Testable>(new LambdaTest()));
-//    v.push_back(shared_ptr<Testable>(new PrintDirTest()));
+//    v.push_back(make_shared<SystemTest>());
+//    v.push_back(make_shared<ForkTest>());
+//    v.push_back(make_shared<LambdaTest>());
+//    v.push_back(make_shared<PrintDirTest>());
 
-    v.push_back(shared_ptr<Testable>(new FileTest()));
+    v.push_back(std::make_shared<FileTest>());
 }
