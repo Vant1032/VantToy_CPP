@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <unistd.h>
+#include <fcntl.h>
 #include <sys/types.h>
 #include <sys/resource.h>
 #include <cstdlib>
@@ -40,7 +41,20 @@ void testEvent();
 int main() {
     using namespace std;
 
-    testEvent();
+    const char *buf = "124345454894964196411416416\n";
+    write(1, buf, strlen(buf) * sizeof(char));
+
+    int fd = open("/dev/null", O_RDWR);
+    if (fd == -1) {
+        perror("");
+    }
+    write(fd, buf, strlen(buf) * sizeof(char));
+    ssize_t k = read(fd, (void *)buf, strlen(buf) * sizeof(char));
+    cout << k << endl;
+    close(fd);
+
+
+//    testEvent();
 }
 
 void testEvent() {
@@ -59,10 +73,10 @@ void run() {
  * 将要测试的类放入此处
  */
 void addTestable() {
-    v.push_back(make_shared<SystemTest>());
-    v.push_back(make_shared<ForkTest>());
-    v.push_back(make_shared<LambdaTest>());
-    v.push_back(make_shared<PrintDirTest>());
+//    v.push_back(make_shared<SystemTest>());
+//    v.push_back(make_shared<ForkTest>());
+//    v.push_back(make_shared<LambdaTest>());
+//    v.push_back(make_shared<PrintDirTest>());
 
     v.push_back(std::make_shared<FileTest>());
 }

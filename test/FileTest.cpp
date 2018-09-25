@@ -20,5 +20,6 @@ void FileTest::test() {
     cout << "file.canExecute() = " << file.canExecute() << endl;
     cout << "file.isDirectory() = " << file.isDirectory() << endl;
     cout << "file.exist() = " << file.exist() << endl;
+    cout << "file.isFile() = " << file.isFile() << endl;
 
 }

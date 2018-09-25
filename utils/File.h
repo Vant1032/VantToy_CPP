@@ -44,9 +44,19 @@ public:
 
     std::vector<File> listFiles() const;
 
+    bool mkdir() const;
+
+    bool mkdirs() const;
+
+    bool removeDirs() const;
+
+
+
 
 private:
     char *path;
+
+    bool removeDirs0(char *path) const;
 };
 
 

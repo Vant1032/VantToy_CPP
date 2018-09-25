@@ -85,7 +85,7 @@ std::vector<File> File::listFiles() const {
 }
 
 File::~File() {
-    delete [] path;
+    delete[] path;
 }
 
 File::File(const File &file) {
@@ -100,7 +100,7 @@ File::File(File &&file) noexcept {
 }
 
 File &File::operator=(const File &file) {
-    delete [] this->path;
+    delete[] this->path;
     size_t len = strlen(file.path);
     this->path = new char[len + 1];
     strcpy(this->path, file.path);
@@ -110,8 +110,56 @@ File &File::operator=(File &&file) noexcept {
     if (this == &file) {
         return *this;
     }
-    delete [] path;
+    delete[] path;
     this->path = file.path;
     file.path = nullptr;
     return *this;
+}
+
+
+/**
+ * 只能创建一层目录
+ * @return true如果创建成功, 否则为false
+ */
+bool File::mkdir() const {
+    return ::mkdir(path, S_IRWXG) != -1;
+}
+
+
+bool File::mkdirs() const {
+
+}
+
+
+/**
+ * @see File::removeDirs0
+ * <p>必须确保这是个目录</p>
+ * @return
+ */
+bool File::removeDirs() const {
+    return removeDirs0(path);
+}
+
+
+/**
+ * @param path 必须确保这个是个 目录
+ * @return 完全删除该目录下所有文件时返回true,否则返回false;
+ */
+bool File::removeDirs0(char *path) const {
+    DIR *dp = opendir(path);
+    if (dp == nullptr) return false;
+    dirent *dir;
+    struct stat stat1{};
+    while ((dir = readdir(dp)) != nullptr) {
+        stat(dir->d_name, &stat1);
+        if (S_ISDIR(stat1.st_mode)) {
+            removeDirs0(dir->d_name);
+        } else if (S_ISREG(stat1.st_mode)) {
+            if (unlink(dir->d_name) == -1) {
+                return false;
+            }
+        }
+    }
+
+    return rmdir(path) != -1;
 }

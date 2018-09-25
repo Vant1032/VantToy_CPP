@@ -12,7 +12,7 @@
 #include <stdio.h>
 
 void PrintDirTest::test() {
-    char *p = get_current_dir_name();
+    char *p = get_current_dir_name();//因此不推荐使用get_current_dir_name
     printDir(p, 0);
     free(p); //要对应,不是用delete,而是用free
 }
