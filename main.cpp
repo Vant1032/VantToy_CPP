@@ -26,6 +26,7 @@
 #include "test/LambdaTest.h"
 #include "test/PrintDirTest.h"
 #include "test/FileTest.h"
+#include "test/UnameTest.h"
 
 using namespace std;
 
@@ -38,9 +39,23 @@ void run();
 
 void testEvent();
 
-int main() {
-    using namespace std;
+void writeTest();
 
+int main() {
+//    using namespace std;
+//    FILE *fpw = popen("./Linux2", "w");
+//    fprintf(fpw, "hahahhhahahhhah");
+//    fflush(fpw);
+//    fclose(fpw);
+
+
+//    writeTest();
+
+
+    testEvent();
+}
+
+void writeTest() {
     const char *buf = "124345454894964196411416416\n";
     write(1, buf, strlen(buf) * sizeof(char));
 
@@ -52,9 +67,6 @@ int main() {
     ssize_t k = read(fd, (void *)buf, strlen(buf) * sizeof(char));
     cout << k << endl;
     close(fd);
-
-
-//    testEvent();
 }
 
 void testEvent() {
@@ -77,6 +89,7 @@ void addTestable() {
 //    v.push_back(make_shared<ForkTest>());
 //    v.push_back(make_shared<LambdaTest>());
 //    v.push_back(make_shared<PrintDirTest>());
+//    v.push_back(std::make_shared<FileTest>());
+    v.push_back(std::make_shared<UnameTest>());
 
-    v.push_back(std::make_shared<FileTest>());
 }
