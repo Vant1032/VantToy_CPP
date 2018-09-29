@@ -27,6 +27,7 @@
 #include "test/PrintDirTest.h"
 #include "test/FileTest.h"
 #include "test/UnameTest.h"
+#include "test/EnvironTest.h"
 
 using namespace std;
 
@@ -90,6 +91,6 @@ void addTestable() {
 //    v.push_back(make_shared<LambdaTest>());
 //    v.push_back(make_shared<PrintDirTest>());
 //    v.push_back(std::make_shared<FileTest>());
-    v.push_back(std::make_shared<UnameTest>());
-
+//    v.push_back(std::make_shared<UnameTest>());
+    v.push_back(std::make_shared<EnvironTest>());
 }
