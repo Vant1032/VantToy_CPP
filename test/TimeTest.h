@@ -5,9 +5,11 @@
 #ifndef LINUX_TIMETEST_H
 #define LINUX_TIMETEST_H
 
+#include "Testable.h"
 
-class TimeTest {
-
+class TimeTest : public Testable {
+public:
+    void test() override;
 };
 
 
