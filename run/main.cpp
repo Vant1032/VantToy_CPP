@@ -20,15 +20,15 @@
 #include <boost/lexical_cast.hpp>
 #include <array>
 
-#include "test/Testable.h"
-#include "test/ForkTest.h"
-#include "test/SystemTest.h"
-#include "test/LambdaTest.h"
-#include "test/PrintDirTest.h"
-#include "test/FileTest.h"
-#include "test/UnameTest.h"
-#include "test/EnvironTest.h"
-#include "test/TimeTest.h"
+#include "../test/Testable.h"
+#include "../test/ForkTest.h"
+#include "../test/SystemTest.h"
+#include "../test/LambdaTest.h"
+#include "../test/PrintDirTest.h"
+#include "../test/FileTest.h"
+#include "../test/UnameTest.h"
+#include "../test/EnvironTest.h"
+#include "../test/TimeTest.h"
 
 using namespace std;
 
